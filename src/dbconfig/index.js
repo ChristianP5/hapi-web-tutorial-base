@@ -7,7 +7,7 @@ const sequelize = new Sequelize('my_schema', 'root', 'Xiaogoesbrr1!', {
 });
 
 const getAllUsers = async () => {
-  const [result, metadata] = await sequelize.query('SELECT * FROM my_table');
+  const [result, metadata] = await sequelize.query('SELECT * FROM users');
   return result;
 };
 

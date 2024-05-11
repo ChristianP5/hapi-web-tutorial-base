@@ -5,7 +5,7 @@
   "main": "server.js",
   "scripts": {
     "start": "nodemon -e html,js,hbs ./src/server.js",
-    "start-db": "node ./src/dbconfig/index.js",
+    "start-models": "node ./src/models/users.js",
     "lint": "eslint ./src"
   },
   "author": "",

@@ -1,6 +1,6 @@
 const {
   getRoot, getError, getIndex, getDownload, loginHandler,
-  getAllUsersHandler,
+  getAllUsersHandler, getCssHandler,
 } = require('./handler');
 
 const routes = [
@@ -18,6 +18,11 @@ const routes = [
     path: '/index',
     method: 'GET',
     handler: getIndex,
+  },
+  {
+    path: '/css/{filename}',
+    method: 'GET',
+    handler: getCssHandler,
   },
   {
     path: '/download',

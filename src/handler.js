@@ -1,6 +1,23 @@
-const { request } = require('http');
 const path = require('path');
 const Connection = require('./dbconfig');
+const Users = require('./models/users');
+
+const getAllUsersHandler = async (request, h) => {
+    const users = await Connection.getAllUsers();
+    const data = { users };
+  
+    return h.view('users', data);
+  };
+
+const loginHandler = async(request, h) => {
+    const { username, password } = request.payload;
+  
+    if (!username || !password) {
+      return h.redirect('/index');
+    }
+    await Users.createUser(username, password);
+    return h.view('home', { username, password });
+  };
 
 const getRoot = (request, h) => {
   const response = h.response({
@@ -22,21 +39,15 @@ const getDownload = (request, h) => h.file('index.html', {
   filename: 'downloaded-index.html',
 });
 
-const loginHandler = (request, h) => {
-  const { username, password } = request.payload;
 
-  if (!username || !password) {
-    return h.redirect('/index');
-  }
-  return h.view('home', { username, password });
-};
 
-const getAllUsersHandler = async (request, h) => {
-  const users = await Connection.getAllUsers();
-  const data = { users };
 
-  return h.view('users', data);
-};
+
+const getCssHandler = (request, h) => {
+    const { filename } = request.params;
+
+    return h.file(`./css/${filename}`);
+}
 
 module.exports = {
   getRoot,
@@ -45,4 +56,5 @@ module.exports = {
   getDownload,
   loginHandler,
   getAllUsersHandler,
+  getCssHandler,
 };
