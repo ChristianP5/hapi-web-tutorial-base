@@ -31,16 +31,18 @@ const loginHandler = (request, h) => {
   return h.view('home', { username, password });
 };
 
-const getAllUsersHandler = async(request, h) => {
-    
-    const users = await Connection.getAllUsers();
-    const data = { users }
-    
-    return h.view('users', data);
-    
-}
+const getAllUsersHandler = async (request, h) => {
+  const users = await Connection.getAllUsers();
+  const data = { users };
+
+  return h.view('users', data);
+};
 
 module.exports = {
-  getRoot, getError, getIndex, getDownload, loginHandler,
-  getAllUsersHandler
+  getRoot,
+  getError,
+  getIndex,
+  getDownload,
+  loginHandler,
+  getAllUsersHandler,
 };

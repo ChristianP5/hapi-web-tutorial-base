@@ -6,14 +6,13 @@ const sequelize = new Sequelize('my_schema', 'root', 'Xiaogoesbrr1!', {
   dialect: 'mysql',
 });
 
-const getAllUsers = async()=>{
-    const [ result, metadata ] = await sequelize.query("SELECT * FROM my_table");
-    return result;
-}
+const getAllUsers = async () => {
+  const [result, metadata] = await sequelize.query('SELECT * FROM my_table');
+  return result;
+};
 
 module.exports.connection = sequelize;
 module.exports.getAllUsers = getAllUsers;
-
 
 /*
 const authenticateServer = async () => {

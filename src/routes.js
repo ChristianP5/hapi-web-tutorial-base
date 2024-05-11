@@ -1,6 +1,6 @@
 const {
   getRoot, getError, getIndex, getDownload, loginHandler,
-  getAllUsersHandler
+  getAllUsersHandler,
 } = require('./handler');
 
 const routes = [
