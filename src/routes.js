@@ -3,6 +3,8 @@ const {
   getAllUsersHandler, getCssHandler,
 } = require('./handler');
 
+const Boom = require('@hapi/boom');
+
 const routes = [
   {
     path: '/',
@@ -39,6 +41,26 @@ const routes = [
     method: 'POST',
     handler: loginHandler,
   },
+  {
+    path: '/auth',
+    method: 'GET',
+    handler: (request, h)=>{
+
+      const { name } = request.auth.credentials;
+
+      return `<h1>Welcome ${name} to my Private API!</h1>`;
+    },
+    options: {
+      auth: 'login',
+    }
+  },
+  {
+    path: '/logout',
+    method: 'GET',
+    handler: ()=>{
+      return Boom.unauthorized();
+    }
+  }
 ];
 
 module.exports = routes;
